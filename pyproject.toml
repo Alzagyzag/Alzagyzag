@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=75,<82"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jarvis-backend"
+version = "0.1.0"
+description = "J.A.R.V.I.S. Phase 1 backend"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.115,<1",
+  "uvicorn[standard]>=0.34,<1",
+  "httpx>=0.28,<1",
+  "pydantic-settings>=2.7,<3",
+  "aiosqlite>=0.20,<1",
+  "psutil>=6,<8",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "pytest-asyncio>=0.25,<2"]
+
+[tool.setuptools.packages.find]
+include = ["jarvis*"]
+
+[tool.setuptools.package-data]
+jarvis = ["web/*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

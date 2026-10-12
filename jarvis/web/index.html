@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>J.A.R.V.I.S. · Command center</title>
+  <link rel="stylesheet" href="/assets/style.css">
+  <script src="/assets/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="JARVIS home"><span class="brand-mark">J</span><span>J.A.R.V.I.S.<small>PERSONAL INTELLIGENCE SYSTEM</small></span></a>
+    <div class="top-meta"><span class="live-dot"></span><span id="connection-label">STANDBY</span><span class="separator"></span><time id="clock">--:--:--</time><button id="settings-button" class="icon-button" aria-label="Connection settings">⚙</button></div>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="eyebrow">WORKSPACE / 01</div>
+      <nav aria-label="Workspace"><button class="nav-item active" id="assistant-tab"><span>◈</span> Assistant <span class="nav-count">01</span></button><button class="nav-item" id="diagnostics-button"><span>▥</span> Diagnostics</button><button class="nav-item" id="new-session"><span>＋</span> New conversation</button></nav>
+      <div class="section-label">SYSTEM TELEMETRY <span>↗</span></div>
+      <div class="metric"><div><span>CPU utilization</span><strong id="cpu">—</strong></div><div class="meter"><i id="cpu-bar"></i></div></div>
+      <div class="metric"><div><span>Memory utilization</span><strong id="memory">—</strong></div><div class="meter"><i id="memory-bar"></i></div></div>
+      <div class="metric"><div><span>Available storage</span><strong id="disk">—</strong></div><small>BACKEND HOST</small></div>
+      <div class="sidebar-bottom"><span class="tiny-dot"></span><span id="database">DATABASE NOT CHECKED</span><p>Phase 01 <span>TEXT INTELLIGENCE</span></p></div>
+    </aside>
+    <section class="workspace">
+      <div class="workspace-heading"><div><div class="eyebrow">COMMAND CENTER</div><h1>At your service.</h1><p>Your thoughts. A little more possibility.</p></div><span class="version">JARVIS / v0.1</span></div>
+      <div class="core-area"><div class="core" id="core" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><div class="core-inner"><span>J</span></div><div class="core-cross horizontal"></div><div class="core-cross vertical"></div></div><div class="core-caption"><span class="tiny-dot"></span><span id="assistant-state" role="status">AWAITING CONNECTION</span></div></div>
+      <div class="conversation-header"><span>CONVERSATION</span><span id="session-label">NEW SESSION</span></div>
+      <div id="messages" class="messages" role="log" aria-label="Conversation" aria-live="polite"><div class="welcome" id="welcome"><span class="message-avatar">J</span><div><div class="message-name">J.A.R.V.I.S. <span>ASSISTANT</span></div><p>Good evening. What shall we work on?</p><small>Connect to your backend to begin.</small></div></div></div>
+      <div class="suggestions" id="suggestions"><button data-prompt="Help me plan my day. Ask what commitments I have first.">Plan my day <span>↗</span></button><button data-prompt="Help me break down a project into practical next steps. Ask about the project first.">Think through a project <span>↗</span></button><button id="system-check">Check system status <span>↗</span></button></div>
+      <form id="chat-form" class="composer"><label class="sr-only" for="prompt">Message JARVIS</label><span class="composer-mark">✧</span><textarea id="prompt" rows="1" maxlength="16000" placeholder="Ask J.A.R.V.I.S. anything…" disabled></textarea><button type="button" class="stop-button" id="stop-button" hidden>Stop</button><button type="submit" id="send-button" aria-label="Send message" disabled>↑</button></form>
+      <div class="composer-footer"><span><span class="tiny-dot"></span> <span id="model-label">CONNECT TO ACTIVATE</span></span><span>ENTER TO SEND · SHIFT + ENTER FOR NEW LINE</span></div>
+      <div id="notice" class="notice" role="status"></div>
+    </section>
+    <aside class="rightbar">
+      <div class="eyebrow">OPERATIONS OVERVIEW</div><h2>System modules</h2>
+      <div class="module"><span class="module-icon">◈</span><div><strong>Conversation</strong><small>Streaming intelligence</small></div><span class="badge" id="chat-badge">OFFLINE</span></div>
+      <div class="module"><span class="module-icon">▤</span><div><strong>Session storage</strong><small>SQLite persistence</small></div><span class="badge" id="storage-badge">UNKNOWN</span></div>
+      <div class="module muted"><span class="module-icon">≋</span><div><strong>Voice interface</strong><small>Speech & listening</small></div><span class="badge neutral">PLANNED</span></div>
+      <div class="module muted"><span class="module-icon">⌘</span><div><strong>Tool execution</strong><small>Permission-based control</small></div><span class="badge neutral">PLANNED</span></div>
+      <div class="module muted"><span class="module-icon">◎</span><div><strong>Long-term memory</strong><small>Semantic retrieval</small></div><span class="badge neutral">PLANNED</span></div>
+      <div class="insight"><span class="eyebrow">DESIGNED TO ASSIST</span><p>A clear mind.<br>A capable partner.</p><div class="signal-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><small>READY WHEN YOU ARE</small></div>
+      <div class="privacy"><span>◇</span><p>Provider keys stay on the backend. Conversations persist until you delete them.</p></div>
+      <button class="delete-button" id="delete-session">Delete this conversation</button>
+    </aside>
+  </main>
+  <footer class="bottom-bar"><span>J.A.R.V.I.S. <span class="dim">/ JUST A RATHER VERY INTELLIGENT SYSTEM</span></span><span>HUMAN IN COMMAND <span class="tiny-dot"></span></span></footer>
+  <dialog id="connection-dialog"><form id="connect-form"><div class="eyebrow">SECURE CONNECTION</div><h2>Activate J.A.R.V.I.S.</h2><p>Enter your backend access token. It stays in memory for this tab; provider keys belong on the server.</p><label for="token">Backend access token</label><input id="token" type="password" autocomplete="off" required placeholder="JARVIS_API_TOKEN"><div id="connection-error" role="alert"></div><div class="dialog-actions"><button type="button" id="close-dialog" class="secondary">Cancel</button><button type="submit" id="connect-button">Connect →</button></div></form></dialog>
+</body>
+</html>
